@@ -8,14 +8,12 @@ interface AnimatedSectionProps {
   children: ReactNode;
   className?: string;
   id?: string;
-  variant?: 'fadeInUp' | 'stagger';
 }
 
 export default function AnimatedSection({ 
   children, 
   className = '', 
-  id,
-  variant: _variant = 'fadeInUp'
+  id
 }: AnimatedSectionProps) {
   const inViewProps = useInViewAnimation();
 
