@@ -56,13 +56,13 @@ export default function CelebrationBanner() {
   }
 
   const textGlowVariants = {
-    initial: { textShadow: "0 0 0px rgba(215, 38, 61, 0)" },
+    initial: { textShadow: "0 0 0px rgba(28, 169, 201, 0)" },
     animate: { 
       textShadow: [
-        "0 0 10px rgba(215, 38, 61, 0.5)",
-        "0 0 20px rgba(215, 38, 61, 0.8)", 
-        "0 0 30px rgba(215, 38, 61, 0.6)",
-        "0 0 10px rgba(215, 38, 61, 0.5)"
+        "0 0 10px rgba(28, 169, 201, 0.5)",
+        "0 0 20px rgba(0, 247, 255, 0.8)", 
+        "0 0 30px rgba(119, 230, 242, 0.6)",
+        "0 0 10px rgba(28, 169, 201, 0.5)"
       ],
       transition: { 
         duration: 2, 

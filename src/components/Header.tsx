@@ -71,8 +71,8 @@ export default function Header() {
       animate={{ y: 0 }}
       transition={{ duration: 0.6, ease: "easeOut" as const }}
     >
-      <nav className={`max-w-7xl mx-auto px-6 flex items-center justify-between transition-all duration-500 ${
-        isScrolled ? 'h-14 py-2' : 'h-16 py-3'
+      <nav className={`max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between transition-all duration-500 ${
+        isScrolled ? 'h-12 py-2' : 'h-14 py-2.5'
       }`} aria-label="Global navigation">
         <div className="flex lg:flex-1">
           <a href="#home" className="-m-1.5 p-1.5" onClick={(e) => handleNavClick(e, '#home')}>
@@ -84,7 +84,7 @@ export default function Header() {
         </div>
 
         {/* Desktop Navigation */}
-        <div className="hidden lg:flex lg:items-center lg:gap-x-4">
+        <div className="hidden lg:flex lg:items-center lg:gap-x-3">
           {navigation.slice(0, -1).map((item, index) => (
             <motion.a
               key={item.name}
@@ -106,8 +106,8 @@ export default function Header() {
           <motion.a
             href="#contact"
             onClick={(e) => handleNavClick(e, '#contact')}
-            className={`btn-primary text-bg font-semibold transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 ${
-              isScrolled ? 'px-3 py-1.5 text-xs' : 'px-5 py-2.5 text-sm'
+            className={`btn-primary font-semibold transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 ${
+              isScrolled ? 'px-3 py-1.5 text-xs' : 'px-4 py-2 text-sm'
             }`}
             variants={navItem}
             initial="initial"

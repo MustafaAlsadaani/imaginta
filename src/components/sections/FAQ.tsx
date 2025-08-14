@@ -209,19 +209,19 @@ export default function FAQ({
   }
 
   return (
-    <section id={id} className="section-shell py-20">
+    <section id={id} className="section-shell py-16">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: '-100px' }}
         transition={{ duration: 0.6, ease: "easeOut" as const }}
-        className="text-center mb-16"
+        className="text-center mb-12"
       >
-        <h2 className="text-4xl md:text-5xl font-bold text-text mb-4 leading-tight">
+        <h2 className="section-title text-text mb-4 leading-tight">
           {title}
         </h2>
-        <p className="text-xl text-muted max-w-3xl mx-auto leading-relaxed">
+        <p className="section-subtitle text-muted max-w-3xl mx-auto">
           {subtitle}
         </p>
       </motion.div>
@@ -232,51 +232,51 @@ export default function FAQ({
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: '-50px' }}
-        className="max-w-4xl mx-auto space-y-12"
+        className="max-w-3xl mx-auto space-y-8"
       >
         {categories.map((category) => (
           <motion.div
             key={category.id}
             variants={categoryVariants}
-            className="space-y-6"
+            className="space-y-4"
           >
             {/* Category Header */}
-            <div className="text-center lg:text-left">
-              <h3 className="text-2xl font-bold text-accent mb-2">
+            <div className="text-center">
+              <h3 className="text-xl font-semibold text-accent mb-2">
                 {category.title}
               </h3>
-              <p className="text-muted leading-relaxed">
+              <p className="text-muted text-sm">
                 {category.description}
               </p>
             </div>
 
             {/* FAQ Items */}
-            <div className="space-y-4">
+            <div className="space-y-3">
               {category.items.map((item) => {
                 const isOpen = openItems.includes(item.id)
                 
                 return (
                   <div
                     key={item.id}
-                    className="soft-card bg-surface/30 border border-surface/60 hover:border-accent/30 transition-colors duration-300"
+                    className="group bg-surface/40 border border-border rounded-xl hover:border-accent/40 hover:bg-surface/60 transition-all duration-300 backdrop-blur-sm"
                   >
                     {/* Question */}
                     <button
                       onClick={() => toggleItem(item.id)}
-                      className="w-full p-6 text-left flex items-center justify-between gap-4 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-surface rounded-xl group"
+                      className="w-full p-4 text-left flex items-center justify-between gap-4 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-bg rounded-xl"
                       aria-expanded={isOpen}
                       aria-controls={`faq-answer-${item.id}`}
                     >
-                      <h4 className="text-lg font-semibold text-text group-hover:text-accent transition-colors duration-300 leading-relaxed">
+                      <h4 className="text-base font-semibold text-accent group-hover:text-accent-warm transition-colors duration-300">
                         {item.question}
                       </h4>
                       <div className="flex-shrink-0">
                         <motion.div
                           animate={{ rotate: isOpen ? 180 : 0 }}
                           transition={{ duration: 0.2, ease: "easeOut" as const }}
-                          className="w-6 h-6 text-muted group-hover:text-accent transition-colors duration-300"
+                          className="w-5 h-5 text-accent-warm group-hover:text-highlight transition-colors duration-300"
                         >
-                          <ChevronDown className="w-6 h-6" />
+                          <ChevronDown className="w-5 h-5" />
                         </motion.div>
                       </div>
                     </button>
@@ -292,8 +292,8 @@ export default function FAQ({
                           exit="exit"
                           className="overflow-hidden"
                         >
-                          <div className="px-6 pb-6">
-                            <p className="text-muted leading-relaxed">
+                          <div className="px-4 pb-4">
+                            <p className="text-muted text-sm leading-relaxed">
                               {item.answer}
                             </p>
                           </div>
