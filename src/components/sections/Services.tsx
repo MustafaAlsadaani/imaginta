@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { ArrowRight, Code, Palette, TrendingUp, Smartphone, Search, Zap } from 'lucide-react'
+import { gridStagger, gridItem, serviceCardHover, fadeInUp, useInViewAnimation } from '@/lib/animations'
 
 interface Service {
   id: string
@@ -85,64 +86,28 @@ export default function Services({
     }
   }
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        duration: 0.6,
-        ease: 'easeOut',
-        staggerChildren: 0.1
-      }
-    }
-  }
-
-  const cardVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6,
-        ease: 'easeOut'
-      }
-    }
-  }
-
-  const hoverVariants = {
-    hover: {
-      y: -8,
-      transition: {
-        duration: 0.3,
-        ease: 'easeOut'
-      }
-    }
-  }
+  const inViewProps = useInViewAnimation()
 
   return (
-    <section id={id} className="section-shell py-20">
+    <section id={id} className="section-shell">
       {/* Header */}
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: '-100px' }}
-        transition={{ duration: 0.6, ease: 'easeOut' }}
-        className="text-center mb-16"
+        variants={fadeInUp}
+        {...inViewProps}
+        className="section-header"
       >
-        <h2 className="text-4xl md:text-5xl font-bold text-text mb-4">
+        <h2 className="section-title">
           {title}
         </h2>
-        <p className="text-xl text-muted max-w-2xl mx-auto">
+        <p className="section-subtitle">
           {subtitle}
         </p>
       </motion.div>
 
       {/* Services Grid */}
       <motion.div
-        variants={containerVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: '-50px' }}
+        variants={gridStagger}
+        {...inViewProps}
         className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
       >
         {services.map((service) => {
@@ -150,22 +115,26 @@ export default function Services({
           return (
             <motion.div
               key={service.id}
-              variants={cardVariants}
-              whileHover="hover"
+              variants={gridItem}
+              whileHover={serviceCardHover}
               className="group"
             >
-              <motion.div
-                variants={hoverVariants}
-                className="soft-card h-full bg-surface border border-surface hover:border-accent/30 transition-colors duration-300 cursor-pointer"
+              <div className="soft-card h-full cursor-pointer"
                 style={{
-                  // Prevent layout shift on hover
-                  willChange: 'transform'
+                  background: 'linear-gradient(145deg, var(--surface), rgba(26, 26, 28, 0.95))',
+                  borderColor: 'rgba(255, 255, 255, 0.05)'
                 }}
               >
+            
                 {/* Icon */}
                 <div className="mb-6">
-                  <div className="w-16 h-16 bg-accent/10 rounded-xl flex items-center justify-center group-hover:bg-accent/20 transition-colors duration-300">
-                    <Icon className="w-8 h-8 text-accent" />
+                  <div className="w-16 h-16 rounded-2xl flex items-center justify-center transition-all duration-300 shadow-lg group-hover:shadow-accent/20 group-hover:shadow-xl"
+                    style={{
+                      background: 'linear-gradient(145deg, rgba(0, 245, 212, 0.1), rgba(0, 245, 212, 0.05))',
+                      border: '1px solid rgba(0, 245, 212, 0.1)'
+                    }}
+                  >
+                    <Icon className="w-8 h-8 text-accent transition-colors duration-300 group-hover:text-accent-warm" />
                   </div>
                 </div>
 
@@ -203,7 +172,7 @@ export default function Services({
                     </a>
                   </div>
                 )}
-              </motion.div>
+              </div>
             </motion.div>
           )
         })}
@@ -211,10 +180,8 @@ export default function Services({
 
       {/* CTA Section */}
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: '-100px' }}
-        transition={{ duration: 0.6, ease: 'easeOut', delay: 0.3 }}
+        variants={fadeInUp}
+        {...inViewProps}
         className="text-center mt-16"
       >
         <p className="text-lg text-muted mb-8">

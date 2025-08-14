@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { useRef } from 'react'
+import { heroTextReveal, heroCTAReveal, buttonHover, buttonTap, decorativeFloat } from '@/lib/animations'
 
 export default function Hero() {
   const heroRef = useRef<HTMLElement>(null)
@@ -15,67 +16,21 @@ export default function Hero() {
     }
   }
 
-  // Animation variants that respect prefers-reduced-motion
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        duration: 0.6,
-        ease: 'easeOut',
-        staggerChildren: 0.2
-      }
-    }
-  }
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6,
-        ease: 'easeOut'
-      }
-    }
-  }
-
-  const ctaVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6,
-        ease: 'easeOut',
-        delay: 0.4
-      }
-    },
-    hover: {
-      scale: 1.05,
-      transition: {
-        duration: 0.2,
-        ease: 'easeOut'
-      }
-    }
-  }
+  // Enhanced animation variants using our animation system
 
   return (
     <section 
       ref={heroRef}
       id="home" 
-      className="hero-bg min-h-screen flex items-center justify-center relative"
+      className="hero-bg min-h-screen flex items-center justify-center relative section-cinematic"
     >
       <div className="section-shell text-center">
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-          className="max-w-4xl mx-auto"
-        >
+        <div className="max-w-4xl mx-auto">
           <motion.h1 
-            variants={itemVariants}
-            className="text-6xl md:text-7xl lg:text-8xl font-bold text-text mb-6 leading-tight"
+            variants={heroTextReveal}
+            initial="initial"
+            animate="animate"
+            className="hero-title mb-8 max-w-4xl"
             style={{ 
               // Prevent CLS by setting explicit dimensions
               minHeight: '1.1em',
@@ -84,41 +39,57 @@ export default function Hero() {
             }}
           >
             Your Business.{' '}
-            <span className="text-accent bg-gradient-to-r from-accent to-accent-warm bg-clip-text text-transparent">
+            <span className="text-accent bg-gradient-to-r from-accent via-accent-warm to-highlight bg-clip-text text-transparent">
               Elevated.
             </span>
           </motion.h1>
           
           <motion.p 
-            variants={itemVariants}
-            className="text-xl md:text-2xl lg:text-3xl text-muted max-w-3xl mx-auto mb-12 leading-relaxed"
+            variants={heroTextReveal}
+            initial="initial"
+            animate="animate"
+            className="body-large max-w-2xl mx-auto mb-12"
             style={{ 
               // Prevent CLS by setting explicit dimensions
               minHeight: '1.2em'
             }}
           >
-            Web, brand, and growth—engineered for results.
+            Transforming businesses through innovative web solutions, 
+            compelling brand identities, and data-driven growth strategies.
           </motion.p>
           
           <motion.div
-            variants={ctaVariants}
-            whileHover="hover"
+            variants={heroCTAReveal}
+            initial="initial"
+            animate="animate"
+            whileHover={buttonHover}
+            whileTap={buttonTap}
             className="inline-block"
           >
             <a
               href="#contact"
               onClick={handleCtaClick}
-              className="inline-flex items-center justify-center rounded-lg bg-accent px-12 py-6 text-xl font-semibold text-bg hover:bg-accent-warm transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-accent/30 focus:ring-offset-2 focus:ring-offset-bg"
-              style={{
-                // Ensure high contrast for AA compliance (21:1 ratio)
-                color: '#000000', // Pure black for maximum contrast against cyan
-                backgroundColor: '#00F5D4' // Cyan accent color
-              }}
+              className="btn-primary btn-large inline-flex items-center justify-center focus:outline-none focus:ring-4 focus:ring-accent/30 focus:ring-offset-2 focus:ring-offset-bg shadow-2xl shadow-accent/20"
             >
               Start Your Project
             </a>
           </motion.div>
-        </motion.div>
+        </div>
+        
+        {/* Decorative Elements */}
+        <motion.div
+          variants={decorativeFloat}
+          initial="initial"
+          animate="animate"
+          className="absolute top-20 left-10 w-6 h-6 bg-accent/20 rounded-full blur-sm"
+        />
+        <motion.div
+          variants={decorativeFloat}
+          initial="initial"
+          animate="animate"
+          className="absolute bottom-32 right-16 w-4 h-4 bg-accent-warm/20 rounded-full blur-sm"
+          style={{ animationDelay: '2s' }}
+        />
       </div>
       
       {/* Accessibility: Hidden heading for screen readers */}

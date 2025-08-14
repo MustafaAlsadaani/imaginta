@@ -1,22 +1,34 @@
 'use client'
 
 import { useState, useEffect, useRef } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
+import { buttonHover, buttonTap, navItem } from '@/lib/animations'
 
 const navigation = [
-  { name: 'Home', href: '#home' },
+  { name: 'About', href: '#about' },
   { name: 'Services', href: '#services' },
   { name: 'Process', href: '#process' },
-  { name: 'Case Studies', href: '#case-studies' },
-  { name: 'Testimonials', href: '#testimonials' },
-  { name: 'Resources', href: '#resources' },
+  { name: 'Work', href: '#case-studies' },
+  { name: 'Pricing', href: '#pricing' },
   { name: 'Contact', href: '#contact' },
 ]
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [isScrolled, setIsScrolled] = useState(false)
   const mobileMenuRef = useRef<HTMLDivElement>(null)
   const menuButtonRef = useRef<HTMLButtonElement>(null)
+
+  // Handle scroll effects
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20)
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
   // Handle escape key
   useEffect(() => {
@@ -49,27 +61,63 @@ export default function Header() {
   }
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-surface bg-bg/80 backdrop-blur-md">
-      <nav className="section-shell flex h-16 items-center justify-between" aria-label="Global navigation">
+    <motion.header 
+      className={`sticky top-0 z-50 w-full transition-all duration-500 ${
+        isScrolled 
+          ? 'bg-bg/90 backdrop-blur-xl border-b border-white/10 shadow-2xl' 
+          : 'bg-transparent border-b border-transparent'
+      }`}
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      transition={{ duration: 0.6, ease: 'easeOut' }}
+    >
+      <nav className={`max-w-7xl mx-auto px-6 flex items-center justify-between transition-all duration-500 ${
+        isScrolled ? 'h-12 py-1' : 'h-16 py-3'
+      }`} aria-label="Global navigation">
         <div className="flex lg:flex-1">
           <a href="#home" className="-m-1.5 p-1.5" onClick={(e) => handleNavClick(e, '#home')}>
             <span className="sr-only">Imaginta</span>
-            <div className="text-2xl font-bold text-accent">Imaginta</div>
+            <div className={`font-bold text-accent transition-all duration-500 ${
+              isScrolled ? 'text-xl' : 'text-2xl'
+            }`}>Imaginta</div>
           </a>
         </div>
 
         {/* Desktop Navigation */}
-        <div className="hidden lg:flex lg:gap-x-8">
-          {navigation.map((item) => (
-            <a
+        <div className="hidden lg:flex lg:items-center lg:gap-x-4">
+          {navigation.slice(0, -1).map((item, index) => (
+            <motion.a
               key={item.name}
               href={item.href}
               onClick={(e) => handleNavClick(e, item.href)}
-              className="text-sm font-semibold leading-6 text-text hover:text-accent transition-colors focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-bg rounded-sm px-2 py-1"
+              className="text-sm font-medium leading-6 text-text hover:text-accent transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-bg rounded-lg px-2 py-1"
+              variants={navItem}
+              initial="initial"
+              animate="animate"
+              transition={{ delay: index * 0.1 + 0.2 }}
+              whileHover={buttonHover}
+              whileTap={buttonTap}
             >
               {item.name}
-            </a>
+            </motion.a>
           ))}
+          
+          {/* Contact CTA Button */}
+          <motion.a
+            href="#contact"
+            onClick={(e) => handleNavClick(e, '#contact')}
+            className={`btn-primary text-bg font-semibold transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 ${
+              isScrolled ? 'px-3 py-1.5 text-xs' : 'px-5 py-2.5 text-sm'
+            }`}
+            variants={navItem}
+            initial="initial"
+            animate="animate"
+            transition={{ delay: 0.8 }}
+            whileHover={buttonHover}
+            whileTap={buttonTap}
+          >
+            Get Started
+          </motion.a>
         </div>
 
         {/* Mobile menu button */}
@@ -95,17 +143,28 @@ export default function Header() {
       </nav>
 
       {/* Mobile menu */}
-      {mobileMenuOpen && (
-        <div 
-          ref={mobileMenuRef}
-          id="mobile-menu" 
-          className="lg:hidden"
-          role="dialog" 
-          aria-modal="true"
-          aria-label="Mobile navigation"
-        >
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <motion.div 
+            ref={mobileMenuRef}
+            id="mobile-menu" 
+            className="lg:hidden"
+            role="dialog" 
+            aria-modal="true"
+            aria-label="Mobile navigation"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+          >
           <div className="fixed inset-0 z-50" />
-          <div className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-bg px-6 py-6 sm:max-w-sm soft-card">
+          <motion.div 
+            className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-bg px-6 py-6 sm:max-w-sm soft-card"
+            initial={{ x: '100%' }}
+            animate={{ x: 0 }}
+            exit={{ x: '100%' }}
+            transition={{ duration: 0.3, ease: 'easeOut' }}
+          >
             <div className="flex items-center justify-between">
               <a href="#home" className="-m-1.5 p-1.5" onClick={(e) => handleNavClick(e, '#home')}>
                 <span className="sr-only">Imaginta</span>
@@ -136,9 +195,10 @@ export default function Header() {
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-      )}
-    </header>
+          </motion.div>
+        </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.header>
   )
 }

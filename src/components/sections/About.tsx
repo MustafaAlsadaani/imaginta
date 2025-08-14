@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ChevronDown, ChevronUp } from 'lucide-react'
+import { scrollFadeUp, buttonHover, buttonTap, useInViewAnimation } from '@/lib/animations'
 
 interface AboutSectionProps {
   id?: string
@@ -40,30 +41,7 @@ export default function About({
     setIsExpanded(!isExpanded)
   }
 
-  const containerVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6,
-        ease: 'easeOut',
-        staggerChildren: 0.1
-      }
-    }
-  }
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 10 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.5,
-        ease: 'easeOut'
-      }
-    }
-  }
+  const inViewProps = useInViewAnimation()
 
   const expandedVariants = {
     hidden: {
@@ -106,37 +84,27 @@ export default function About({
   }
 
   return (
-    <section id={id} className="section-shell py-20">
+    <motion.section 
+      id={id} 
+      className="section-shell py-20"
+      variants={scrollFadeUp}
+      {...inViewProps}
+    >
       <div className="grid lg:grid-cols-2 gap-16 items-start">
         {/* Left Column - Title */}
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-100px' }}
-        >
-          <motion.h2 
-            variants={itemVariants}
-            className="text-4xl md:text-5xl font-bold text-text mb-6 leading-tight"
-          >
+        <div>
+          <h2 className="text-4xl md:text-5xl font-bold text-text mb-6 leading-tight">
             {title}
-          </motion.h2>
-        </motion.div>
+          </h2>
+        </div>
 
         {/* Right Column - Content with controlled line length */}
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-100px' }}
-          className={`${maxWidthClasses[maxWidth]} mx-auto lg:mx-0`}
-        >
+        <div className={`${maxWidthClasses[maxWidth]} mx-auto lg:mx-0`}>
           {/* Main Content */}
           <div className="space-y-6">
             {content.map((paragraph, index) => (
-              <motion.p
+              <p
                 key={index}
-                variants={itemVariants}
                 className="text-lg leading-relaxed text-muted"
                 style={{
                   // Optimal reading line length: 45-75 characters
@@ -144,7 +112,7 @@ export default function About({
                 }}
               >
                 {paragraph}
-              </motion.p>
+              </p>
             ))}
           </div>
 
@@ -182,15 +150,14 @@ export default function About({
 
           {/* Read More Button */}
           {expandedContent && expandedContent.length > 0 && (
-            <motion.div
-              variants={itemVariants}
-              className="mt-8"
-            >
-              <button
+            <div className="mt-8">
+              <motion.button
                 onClick={toggleExpanded}
                 className="inline-flex items-center gap-2 text-accent hover:text-accent-warm transition-colors duration-300 font-medium focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-bg rounded-sm px-2 py-1"
                 aria-expanded={isExpanded}
                 aria-controls={`${id}-expanded-content`}
+                whileHover={buttonHover}
+                whileTap={buttonTap}
               >
                 <span>{isExpanded ? 'Read Less' : 'Read More'}</span>
                 <motion.div
@@ -203,8 +170,8 @@ export default function About({
                     <ChevronDown className="h-4 w-4" aria-hidden="true" />
                   )}
                 </motion.div>
-              </button>
-            </motion.div>
+              </motion.button>
+            </div>
           )}
 
           {/* Screen reader content for context */}
@@ -214,8 +181,8 @@ export default function About({
           >
             {isExpanded ? 'Additional content is now visible' : 'Additional content is hidden'}
           </div>
-        </motion.div>
+        </div>
       </div>
-    </section>
+    </motion.section>
   )
 }

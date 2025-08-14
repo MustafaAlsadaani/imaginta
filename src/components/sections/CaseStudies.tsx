@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { ArrowRight, TrendingUp, Clock, Users, Target, Zap, DollarSign } from 'lucide-react'
+import { gridStagger, gridItem, imageZoom, useInViewAnimation } from '@/lib/animations'
 
 interface Metric {
   icon: React.ComponentType<{ className?: string }>
@@ -145,39 +146,7 @@ export default function CaseStudies({
     }
   }
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        duration: 0.6,
-        ease: 'easeOut',
-        staggerChildren: 0.1
-      }
-    }
-  }
-
-  const cardVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6,
-        ease: 'easeOut'
-      }
-    }
-  }
-
-  const hoverVariants = {
-    hover: {
-      y: -8,
-      transition: {
-        duration: 0.3,
-        ease: 'easeOut'
-      }
-    }
-  }
+  const inViewProps = useInViewAnimation(0.1)
 
   const getMetricColor = (color?: string) => {
     switch (color) {
@@ -210,35 +179,31 @@ export default function CaseStudies({
 
       {/* Case Studies Grid */}
       <motion.div
-        variants={containerVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: '-50px' }}
+        variants={gridStagger}
+        {...inViewProps}
         className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
       >
         {caseStudies.map((study) => (
           <motion.div
             key={study.id}
-            variants={cardVariants}
-            whileHover="hover"
+            variants={gridItem}
             className="group cursor-pointer"
             onClick={handleCaseStudyClick}
           >
-            <motion.div
-              variants={hoverVariants}
-              className="h-full bg-surface/40 backdrop-blur-sm border border-surface/60 hover:border-accent/40 rounded-xl overflow-hidden transition-all duration-300 hover:bg-surface/60"
+            <div className="h-full bg-surface/40 backdrop-blur-sm border border-surface/60 hover:border-accent/40 rounded-xl overflow-hidden transition-all duration-300 hover:bg-surface/60 soft-card"
               style={{
                 willChange: 'transform'
               }}
             >
               {/* Project Image Placeholder */}
-              <div 
-                className="relative w-full bg-gradient-to-br from-accent/10 via-accent-warm/10 to-highlight/10 flex items-center justify-center"
+              <motion.div 
+                className="relative w-full bg-gradient-to-br from-accent/10 via-accent-warm/10 to-highlight/10 flex items-center justify-center overflow-hidden"
                 style={{
                   // Prevent layout shift with defined dimensions
                   height: '200px',
                   minHeight: '200px'
                 }}
+                whileHover={imageZoom}
               >
                 <div className="text-center">
                   <div className="w-16 h-16 bg-accent/20 rounded-xl flex items-center justify-center mx-auto mb-3">
@@ -251,7 +216,7 @@ export default function CaseStudies({
                 <div className="absolute top-4 right-4 px-3 py-1 bg-accent/20 backdrop-blur-sm rounded-full text-xs font-medium text-accent">
                   {study.category}
                 </div>
-              </div>
+              </motion.div>
 
               {/* Content */}
               <div className="p-6">
@@ -324,7 +289,7 @@ export default function CaseStudies({
                   </button>
                 </div>
               </div>
-            </motion.div>
+            </div>
           </motion.div>
         ))}
       </motion.div>
