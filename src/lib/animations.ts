@@ -6,12 +6,29 @@ export const prefersReducedMotion = () => {
   return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 };
 
+// Unified cinematic easing curves for consistent motion
+export const cinematicEasing = {
+  gentle: [0.25, 0.1, 0.25, 1] as const,      // Ultra-smooth for ambient motion
+  standard: [0.23, 1, 0.32, 1] as const,      // Main site-wide easing
+  swift: [0.4, 0, 0.2, 1] as const,           // Quick interactions  
+  dramatic: [0.16, 1, 0.3, 1] as const,       // Hero/important elements
+} as const;
+
+// Standardized timing for cinematic flow
+export const cinematicTiming = {
+  instant: 0.1,     // Button presses, micro-feedback
+  quick: 0.3,       // Standard interactions
+  standard: 0.4,    // Main animations
+  slow: 0.6,        // Hero, important reveals
+  ambient: 1.2,     // Background/decorative motion
+} as const;
+
 // Base animation settings that respect reduced motion
-export const getAnimationSettings = () => {
+export const getAnimationSettings = (timing: keyof typeof cinematicTiming = 'standard') => {
   const reducedMotion = prefersReducedMotion();
   return {
-    duration: reducedMotion ? 0 : 0.6,
-    ease: "easeOut" as const, // Custom easing curve for premium feel
+    duration: reducedMotion ? 0 : cinematicTiming[timing],
+    ease: cinematicEasing.standard,
   };
 };
 
@@ -108,7 +125,7 @@ export const staggerContainer: Variants = {
   initial: {},
   animate: {
     transition: {
-      staggerChildren: prefersReducedMotion() ? 0 : 0.15,
+      staggerChildren: prefersReducedMotion() ? 0 : 0.12,
       delayChildren: prefersReducedMotion() ? 0 : 0.1,
     },
   },
@@ -124,8 +141,8 @@ export const staggerItem: Variants = {
     opacity: 1,
     y: 0,
     transition: {
-      duration: prefersReducedMotion() ? 0 : 0.5,
-      ease: "easeOut" as const,
+      duration: prefersReducedMotion() ? 0 : cinematicTiming.standard,
+      ease: cinematicEasing.standard,
     },
   },
 };
@@ -152,8 +169,8 @@ export const gridItem: Variants = {
     y: 0,
     scale: 1,
     transition: {
-      duration: prefersReducedMotion() ? 0 : 0.4,
-      ease: "easeOut" as const,
+      duration: prefersReducedMotion() ? 0 : cinematicTiming.standard,
+      ease: cinematicEasing.standard,
     },
   },
 };
@@ -162,17 +179,17 @@ export const gridItem: Variants = {
 export const buttonHover = {
   scale: prefersReducedMotion() ? 1 : 1.03,
   transition: {
-    duration: prefersReducedMotion() ? 0 : 0.3,
-    ease: "easeOut" as const,
+    duration: prefersReducedMotion() ? 0 : cinematicTiming.quick,
+    ease: cinematicEasing.swift,
   },
 };
 
 // Enhanced button tap animation
 export const buttonTap = {
-  scale: prefersReducedMotion() ? 1 : 0.92,
+  scale: prefersReducedMotion() ? 1 : 0.97,
   transition: {
-    duration: prefersReducedMotion() ? 0 : 0.08,
-    ease: "easeInOut" as const,
+    duration: prefersReducedMotion() ? 0 : cinematicTiming.instant,
+    ease: cinematicEasing.swift,
   },
 };
 
@@ -181,8 +198,8 @@ export const buttonHoverGentle = {
   scale: prefersReducedMotion() ? 1 : 1.02,
   y: prefersReducedMotion() ? 0 : -2,
   transition: {
-    duration: prefersReducedMotion() ? 0 : 0.25,
-    ease: "easeOut" as const,
+    duration: prefersReducedMotion() ? 0 : cinematicTiming.quick,
+    ease: cinematicEasing.standard,
   },
 };
 
@@ -199,8 +216,8 @@ export const cardHover = {
   y: prefersReducedMotion() ? 0 : -8,
   scale: prefersReducedMotion() ? 1 : 1.02,
   transition: {
-    duration: prefersReducedMotion() ? 0 : 0.4,
-    ease: "easeOut" as const,
+    duration: prefersReducedMotion() ? 0 : cinematicTiming.standard,
+    ease: cinematicEasing.standard,
   },
 };
 
@@ -218,8 +235,8 @@ export const serviceCardHover = {
   y: prefersReducedMotion() ? 0 : -6,
   scale: prefersReducedMotion() ? 1 : 1.01,
   transition: {
-    duration: prefersReducedMotion() ? 0 : 0.35,
-    ease: "easeOut" as const,
+    duration: prefersReducedMotion() ? 0 : cinematicTiming.standard,
+    ease: cinematicEasing.standard,
   },
 };
 
@@ -331,8 +348,8 @@ export const heroTextReveal: Variants = {
     opacity: 1,
     y: 0,
     transition: {
-      duration: prefersReducedMotion() ? 0 : 0.8,
-      ease: "easeOut" as const,
+      duration: prefersReducedMotion() ? 0 : cinematicTiming.slow,
+      ease: cinematicEasing.dramatic,
     },
   },
 };
@@ -349,9 +366,9 @@ export const heroCTAReveal: Variants = {
     y: 0,
     scale: 1,
     transition: {
-      duration: prefersReducedMotion() ? 0 : 0.6,
+      duration: prefersReducedMotion() ? 0 : cinematicTiming.standard,
       delay: prefersReducedMotion() ? 0 : 0.4,
-      ease: "easeOut" as const,
+      ease: cinematicEasing.dramatic,
     },
   },
 };
@@ -364,14 +381,14 @@ export const decorativeFloat: Variants = {
   },
   animate: {
     opacity: [0, 0.6, 0.4, 0.6],
-    scale: [0.8, 1.2, 0.9, 1.1],
-    y: prefersReducedMotion() ? 0 : [-10, 10, -5, 8],
-    x: prefersReducedMotion() ? 0 : [-5, 8, -3, 6],
+    scale: [0.8, 1.1, 0.9, 1.05],
+    y: prefersReducedMotion() ? 0 : [-8, 8, -4, 6],
+    x: prefersReducedMotion() ? 0 : [-4, 6, -2, 4],
     transition: {
-      duration: prefersReducedMotion() ? 0 : 8,
+      duration: prefersReducedMotion() ? 0 : 6,
       repeat: prefersReducedMotion() ? 0 : Infinity,
       repeatType: 'reverse',
-      ease: "easeInOut" as const,
+      ease: cinematicEasing.gentle,
     },
   },
 };
@@ -412,14 +429,150 @@ export const useInViewAnimation = (delay = 0) => {
 export const scrollFadeUp: Variants = {
   initial: {
     opacity: 0,
-    y: 60,
+    y: 50,
   },
   animate: {
     opacity: 1,
     y: 0,
     transition: {
-      duration: prefersReducedMotion() ? 0 : 0.6,
-      ease: "easeOut" as const,
+      duration: prefersReducedMotion() ? 0 : cinematicTiming.slow,
+      ease: cinematicEasing.standard,
+    },
+  },
+};
+
+// Split text reveal for headlines
+export const splitTextReveal: Variants = {
+  initial: {},
+  animate: {
+    transition: {
+      staggerChildren: prefersReducedMotion() ? 0 : 0.05,
+      delayChildren: prefersReducedMotion() ? 0 : 0.1,
+    },
+  },
+};
+
+export const splitTextItem: Variants = {
+  initial: {
+    opacity: 0,
+    y: 40,
+    rotateX: -90,
+  },
+  animate: {
+    opacity: 1,
+    y: 0,
+    rotateX: 0,
+    transition: {
+      duration: prefersReducedMotion() ? 0 : cinematicTiming.standard,
+      ease: cinematicEasing.dramatic,
+    },
+  },
+};
+
+// Enhanced section divider animation
+export const sectionDivider: Variants = {
+  initial: {
+    scaleX: 0,
+    opacity: 0,
+  },
+  animate: {
+    scaleX: 1,
+    opacity: 1,
+    transition: {
+      duration: prefersReducedMotion() ? 0 : cinematicTiming.ambient,
+      ease: cinematicEasing.gentle,
+      delay: prefersReducedMotion() ? 0 : 0.2,
+    },
+  },
+};
+
+// Mobile menu slide animation
+export const mobileMenuSlide: Variants = {
+  initial: {
+    x: '100%',
+    opacity: 0,
+  },
+  animate: {
+    x: 0,
+    opacity: 1,
+    transition: {
+      duration: prefersReducedMotion() ? 0 : cinematicTiming.standard,
+      ease: cinematicEasing.standard,
+    },
+  },
+  exit: {
+    x: '100%',
+    opacity: 0,
+    transition: {
+      duration: prefersReducedMotion() ? 0 : cinematicTiming.quick,
+      ease: cinematicEasing.swift,
+    },
+  },
+};
+
+// Mobile menu item stagger
+export const mobileMenuStagger: Variants = {
+  initial: {},
+  animate: {
+    transition: {
+      staggerChildren: prefersReducedMotion() ? 0 : 0.08,
+      delayChildren: prefersReducedMotion() ? 0 : 0.15,
+    },
+  },
+};
+
+export const mobileMenuItem: Variants = {
+  initial: {
+    opacity: 0,
+    x: 20,
+  },
+  animate: {
+    opacity: 1,
+    x: 0,
+    transition: {
+      duration: prefersReducedMotion() ? 0 : cinematicTiming.quick,
+      ease: cinematicEasing.standard,
+    },
+  },
+};
+
+// Enhanced image zoom with overlay
+export const imageZoomOverlay = {
+  scale: prefersReducedMotion() ? 1 : 1.05,
+  transition: {
+    duration: prefersReducedMotion() ? 0 : cinematicTiming.standard,
+    ease: cinematicEasing.standard,
+  },
+};
+
+// Content overlay fade
+export const contentOverlay: Variants = {
+  initial: {
+    opacity: 0,
+    y: 20,
+  },
+  animate: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: prefersReducedMotion() ? 0 : cinematicTiming.quick,
+      ease: cinematicEasing.standard,
+    },
+  },
+};
+
+// Sticky navigation background fade
+export const stickyNavBg: Variants = {
+  initial: {
+    opacity: 0,
+    backdropFilter: 'blur(0px)',
+  },
+  animate: {
+    opacity: 1,
+    backdropFilter: 'blur(12px)',
+    transition: {
+      duration: prefersReducedMotion() ? 0 : cinematicTiming.quick,
+      ease: cinematicEasing.standard,
     },
   },
 };

@@ -15,7 +15,7 @@ import ContactForm from '@/components/ContactForm'
 import FloatingContact from '@/components/FloatingContact'
 import SectionNavLink from '@/components/SectionNavLink'
 import CelebrationBanner from '@/components/CelebrationBanner'
-import { decorativeFloat } from '@/lib/animations'
+import { decorativeFloat, sectionDivider } from '@/lib/animations'
 
 export default function Home() {
   return (
@@ -98,6 +98,15 @@ export default function Home() {
       <div className="section-subtle">
         <Services />
       </div>
+
+      {/* Section Divider */}
+      <motion.div 
+        className="section-divider"
+        variants={sectionDivider}
+        initial="initial"
+        whileInView="animate"
+        viewport={{ once: true, amount: 0.1 }}
+      />
 
       {/* Why Choose Us Section */}
       <WhyChooseUs />
@@ -217,6 +226,9 @@ export default function Home() {
       <div className="section-cinematic">
         <CaseStudies />
       </div>
+
+      {/* Wave Divider */}
+      <div className="wave-divider" />
 
       {/* Testimonials Section */}
       <Testimonials />

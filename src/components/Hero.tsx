@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { useRef } from 'react'
-import { heroTextReveal, heroCTAReveal, buttonHover, buttonTap, decorativeFloat } from '@/lib/animations'
+import { heroTextReveal, heroCTAReveal, buttonHover, buttonTap, decorativeFloat, splitTextReveal, splitTextItem } from '@/lib/animations'
 
 export default function Hero() {
   const heroRef = useRef<HTMLElement>(null)
@@ -27,7 +27,7 @@ export default function Hero() {
       <div className="section-shell text-center">
         <div className="max-w-4xl mx-auto">
           <motion.h1 
-            variants={heroTextReveal}
+            variants={splitTextReveal}
             initial="initial"
             animate="animate"
             className="hero-title mb-8 max-w-4xl"
@@ -36,10 +36,18 @@ export default function Hero() {
               minHeight: '1.1em'
             }}
           >
-            Your Business.{' '}
-            <span className="text-accent bg-gradient-to-r from-accent via-highlight to-accent bg-clip-text text-transparent">
+            <motion.span variants={splitTextItem} className="inline-block">
+              Your
+            </motion.span>{' '}
+            <motion.span variants={splitTextItem} className="inline-block">
+              Business.
+            </motion.span>{' '}
+            <motion.span 
+              variants={splitTextItem} 
+              className="inline-block text-accent bg-gradient-to-r from-accent via-highlight to-accent bg-clip-text text-transparent"
+            >
               Elevated.
-            </span>
+            </motion.span>
           </motion.h1>
           
           <motion.p 

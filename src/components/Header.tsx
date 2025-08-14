@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
-import { buttonHover, buttonTap, navItem } from '@/lib/animations'
+import { buttonHover, buttonTap, navItem, mobileMenuSlide, mobileMenuStagger, mobileMenuItem } from '@/lib/animations'
 
 const navigation = [
   { name: 'About', href: '#about' },
@@ -160,10 +160,10 @@ export default function Header() {
           <div className="fixed inset-0 z-50" />
           <motion.div 
             className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-bg px-6 py-6 sm:max-w-sm soft-card"
-            initial={{ x: '100%' }}
-            animate={{ x: 0 }}
-            exit={{ x: '100%' }}
-            transition={{ duration: 0.3, ease: "easeOut" as const }}
+            variants={mobileMenuSlide}
+            initial="initial"
+            animate="animate"
+            exit="exit"
           >
             <div className="flex items-center justify-between">
               <a href="#home" className="-m-1.5 p-1.5" onClick={(e) => handleNavClick(e, '#home')}>
@@ -181,18 +181,24 @@ export default function Header() {
             </div>
             <div className="mt-6 flow-root">
               <div className="-my-6 divide-y divide-muted">
-                <div className="space-y-2 py-6">
+                <motion.div 
+                  className="space-y-2 py-6"
+                  variants={mobileMenuStagger}
+                  initial="initial"
+                  animate="animate"
+                >
                   {navigation.map((item) => (
-                    <a
+                    <motion.a
                       key={item.name}
                       href={item.href}
                       onClick={(e) => handleNavClick(e, item.href)}
                       className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-text hover:bg-surface hover:text-accent focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-bg"
+                      variants={mobileMenuItem}
                     >
                       {item.name}
-                    </a>
+                    </motion.a>
                   ))}
-                </div>
+                </motion.div>
               </div>
             </div>
           </motion.div>
