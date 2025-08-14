@@ -11,7 +11,7 @@ export const getAnimationSettings = () => {
   const reducedMotion = prefersReducedMotion();
   return {
     duration: reducedMotion ? 0 : 0.6,
-    ease: [0.22, 1, 0.36, 1], // Custom easing curve for premium feel
+    ease: 'easeOut', // Custom easing curve for premium feel
   };
 };
 
@@ -125,7 +125,7 @@ export const staggerItem: Variants = {
     y: 0,
     transition: {
       duration: prefersReducedMotion() ? 0 : 0.5,
-      ease: [0.23, 1, 0.32, 1],
+      ease: 'easeOut',
     },
   },
 };
@@ -163,7 +163,7 @@ export const buttonHover = {
   scale: prefersReducedMotion() ? 1 : 1.03,
   transition: {
     duration: prefersReducedMotion() ? 0 : 0.3,
-    ease: [0.23, 1, 0.32, 1],
+    ease: 'easeOut',
   },
 };
 
@@ -200,7 +200,7 @@ export const cardHover = {
   scale: prefersReducedMotion() ? 1 : 1.02,
   transition: {
     duration: prefersReducedMotion() ? 0 : 0.4,
-    ease: [0.23, 1, 0.32, 1],
+    ease: 'easeOut',
   },
 };
 
@@ -332,7 +332,7 @@ export const heroTextReveal: Variants = {
     y: 0,
     transition: {
       duration: prefersReducedMotion() ? 0 : 0.8,
-      ease: [0.23, 1, 0.32, 1],
+      ease: 'easeOut',
     },
   },
 };
@@ -419,7 +419,7 @@ export const scrollFadeUp: Variants = {
     y: 0,
     transition: {
       duration: prefersReducedMotion() ? 0 : 0.6,
-      ease: [0.23, 1, 0.32, 1],
+      ease: 'easeOut',
     },
   },
 };
