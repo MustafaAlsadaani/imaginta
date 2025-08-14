@@ -69,7 +69,7 @@ export default function Header() {
       }`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      transition={{ duration: 0.6, ease: 'easeOut' }}
+      transition={{ duration: 0.6, ease: "easeOut" as const }}
     >
       <nav className={`max-w-7xl mx-auto px-6 flex items-center justify-between transition-all duration-500 ${
         isScrolled ? 'h-12 py-1' : 'h-16 py-3'
@@ -163,7 +163,7 @@ export default function Header() {
             initial={{ x: '100%' }}
             animate={{ x: 0 }}
             exit={{ x: '100%' }}
-            transition={{ duration: 0.3, ease: 'easeOut' }}
+            transition={{ duration: 0.3, ease: "easeOut" as const }}
           >
             <div className="flex items-center justify-between">
               <a href="#home" className="-m-1.5 p-1.5" onClick={(e) => handleNavClick(e, '#home')}>

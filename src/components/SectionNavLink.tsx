@@ -69,7 +69,7 @@ export default function SectionNavLink({
         transition={{ 
           duration: 2, 
           repeat: Infinity, 
-          ease: 'easeInOut' 
+          ease: "easeInOut" as const 
         }}
       >
         <Icon className={`w-5 h-5 ${

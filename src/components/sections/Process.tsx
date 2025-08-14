@@ -87,7 +87,7 @@ export default function Process({
       opacity: 1,
       transition: {
         duration: 0.6,
-        ease: 'easeOut',
+        ease: "easeOut" as const,
         staggerChildren: 0.2
       }
     }
@@ -100,7 +100,7 @@ export default function Process({
       y: 0,
       transition: {
         duration: 0.6,
-        ease: 'easeOut'
+        ease: "easeOut" as const
       }
     }
   }
@@ -111,7 +111,7 @@ export default function Process({
       scaleX: 1,
       transition: {
         duration: 0.8,
-        ease: 'easeOut',
+        ease: "easeOut" as const,
         delay: 0.3
       }
     }
@@ -124,7 +124,7 @@ export default function Process({
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: '-100px' }}
-        transition={{ duration: 0.6, ease: 'easeOut' }}
+        transition={{ duration: 0.6, ease: "easeOut" as const }}
         className="text-center mb-16"
       >
         <h2 className="text-4xl md:text-5xl font-bold text-text mb-4 leading-tight">
@@ -271,7 +271,7 @@ export default function Process({
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: '-100px' }}
-        transition={{ duration: 0.6, ease: 'easeOut', delay: 0.6 }}
+        transition={{ duration: 0.6, ease: "easeOut" as const, delay: 0.6 }}
         className="text-center mt-16"
       >
         <div className="max-w-2xl mx-auto">

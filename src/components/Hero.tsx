@@ -33,9 +33,7 @@ export default function Hero() {
             className="hero-title mb-8 max-w-4xl"
             style={{ 
               // Prevent CLS by setting explicit dimensions
-              minHeight: '1.1em',
-              // Ensure text remains visible during font swap
-              fontDisplay: 'swap'
+              minHeight: '1.1em'
             }}
           >
             Your Business.{' '}

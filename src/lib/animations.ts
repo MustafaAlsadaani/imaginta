@@ -11,7 +11,7 @@ export const getAnimationSettings = () => {
   const reducedMotion = prefersReducedMotion();
   return {
     duration: reducedMotion ? 0 : 0.6,
-    ease: 'easeOut', // Custom easing curve for premium feel
+    ease: "easeOut" as const, // Custom easing curve for premium feel
   };
 };
 
@@ -125,7 +125,7 @@ export const staggerItem: Variants = {
     y: 0,
     transition: {
       duration: prefersReducedMotion() ? 0 : 0.5,
-      ease: 'easeOut',
+      ease: "easeOut" as const,
     },
   },
 };
@@ -153,7 +153,7 @@ export const gridItem: Variants = {
     scale: 1,
     transition: {
       duration: prefersReducedMotion() ? 0 : 0.4,
-      ease: 'easeOut',
+      ease: "easeOut" as const,
     },
   },
 };
@@ -163,7 +163,7 @@ export const buttonHover = {
   scale: prefersReducedMotion() ? 1 : 1.03,
   transition: {
     duration: prefersReducedMotion() ? 0 : 0.3,
-    ease: 'easeOut',
+    ease: "easeOut" as const,
   },
 };
 
@@ -172,7 +172,7 @@ export const buttonTap = {
   scale: prefersReducedMotion() ? 1 : 0.92,
   transition: {
     duration: prefersReducedMotion() ? 0 : 0.08,
-    ease: 'easeInOut',
+    ease: "easeInOut" as const,
   },
 };
 
@@ -182,7 +182,7 @@ export const buttonHoverGentle = {
   y: prefersReducedMotion() ? 0 : -2,
   transition: {
     duration: prefersReducedMotion() ? 0 : 0.25,
-    ease: 'easeOut',
+    ease: "easeOut" as const,
   },
 };
 
@@ -200,7 +200,7 @@ export const cardHover = {
   scale: prefersReducedMotion() ? 1 : 1.02,
   transition: {
     duration: prefersReducedMotion() ? 0 : 0.4,
-    ease: 'easeOut',
+    ease: "easeOut" as const,
   },
 };
 
@@ -209,7 +209,7 @@ export const cardTap = {
   scale: prefersReducedMotion() ? 1 : 0.98,
   transition: {
     duration: prefersReducedMotion() ? 0 : 0.1,
-    ease: 'easeInOut',
+    ease: "easeInOut" as const,
   },
 };
 
@@ -219,7 +219,7 @@ export const serviceCardHover = {
   scale: prefersReducedMotion() ? 1 : 1.01,
   transition: {
     duration: prefersReducedMotion() ? 0 : 0.35,
-    ease: 'easeOut',
+    ease: "easeOut" as const,
   },
 };
 
@@ -228,7 +228,7 @@ export const imageZoom = {
   scale: prefersReducedMotion() ? 1 : 1.05,
   transition: {
     duration: prefersReducedMotion() ? 0 : 0.4,
-    ease: 'easeOut',
+    ease: "easeOut" as const,
   },
 };
 
@@ -242,7 +242,7 @@ export const float: Variants = {
     transition: {
       duration: prefersReducedMotion() ? 0 : 4,
       repeat: prefersReducedMotion() ? 0 : Infinity,
-      ease: 'easeInOut',
+      ease: "easeInOut" as const,
     },
   },
 };
@@ -257,7 +257,7 @@ export const glow: Variants = {
     transition: {
       duration: prefersReducedMotion() ? 0 : 3,
       repeat: prefersReducedMotion() ? 0 : Infinity,
-      ease: 'easeInOut',
+      ease: "easeInOut" as const,
     },
   },
 };
@@ -332,7 +332,7 @@ export const heroTextReveal: Variants = {
     y: 0,
     transition: {
       duration: prefersReducedMotion() ? 0 : 0.8,
-      ease: 'easeOut',
+      ease: "easeOut" as const,
     },
   },
 };
@@ -351,7 +351,7 @@ export const heroCTAReveal: Variants = {
     transition: {
       duration: prefersReducedMotion() ? 0 : 0.6,
       delay: prefersReducedMotion() ? 0 : 0.4,
-      ease: 'easeOut',
+      ease: "easeOut" as const,
     },
   },
 };
@@ -371,7 +371,7 @@ export const decorativeFloat: Variants = {
       duration: prefersReducedMotion() ? 0 : 8,
       repeat: prefersReducedMotion() ? 0 : Infinity,
       repeatType: 'reverse',
-      ease: 'easeInOut',
+      ease: "easeInOut" as const,
     },
   },
 };
@@ -387,7 +387,7 @@ export const underlineReveal: Variants = {
     transition: {
       duration: prefersReducedMotion() ? 0 : 0.8,
       delay: prefersReducedMotion() ? 0 : 0.2,
-      ease: 'easeOut',
+      ease: "easeOut" as const,
     },
   },
 };
@@ -419,7 +419,7 @@ export const scrollFadeUp: Variants = {
     y: 0,
     transition: {
       duration: prefersReducedMotion() ? 0 : 0.6,
-      ease: 'easeOut',
+      ease: "easeOut" as const,
     },
   },
 };

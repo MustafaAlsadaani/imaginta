@@ -160,7 +160,7 @@ export default function FAQ({
       opacity: 1,
       transition: {
         duration: 0.6,
-        ease: 'easeOut',
+        ease: "easeOut" as const,
         staggerChildren: 0.1
       }
     }
@@ -173,7 +173,7 @@ export default function FAQ({
       y: 0,
       transition: {
         duration: 0.6,
-        ease: 'easeOut'
+        ease: "easeOut" as const
       }
     }
   }
@@ -190,7 +190,7 @@ export default function FAQ({
       marginTop: '1rem',
       transition: {
         duration: 0.3,
-        ease: 'easeOut',
+        ease: "easeOut" as const,
         opacity: {
           duration: 0.2,
           delay: 0.1
@@ -203,7 +203,7 @@ export default function FAQ({
       marginTop: 0,
       transition: {
         duration: 0.2,
-        ease: 'easeIn'
+        ease: "easeIn" as const
       }
     }
   }
@@ -215,7 +215,7 @@ export default function FAQ({
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: '-100px' }}
-        transition={{ duration: 0.6, ease: 'easeOut' }}
+        transition={{ duration: 0.6, ease: "easeOut" as const }}
         className="text-center mb-16"
       >
         <h2 className="text-4xl md:text-5xl font-bold text-text mb-4 leading-tight">
@@ -273,7 +273,7 @@ export default function FAQ({
                       <div className="flex-shrink-0">
                         <motion.div
                           animate={{ rotate: isOpen ? 180 : 0 }}
-                          transition={{ duration: 0.2, ease: 'easeOut' }}
+                          transition={{ duration: 0.2, ease: "easeOut" as const }}
                           className="w-6 h-6 text-muted group-hover:text-accent transition-colors duration-300"
                         >
                           <ChevronDown className="w-6 h-6" />
@@ -313,7 +313,7 @@ export default function FAQ({
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: '-100px' }}
-        transition={{ duration: 0.6, ease: 'easeOut', delay: 0.4 }}
+        transition={{ duration: 0.6, ease: "easeOut" as const, delay: 0.4 }}
         className="text-center mt-16"
       >
         <div className="max-w-2xl mx-auto">

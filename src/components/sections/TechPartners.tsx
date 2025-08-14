@@ -144,7 +144,7 @@ export default function TechPartners({
       opacity: 1,
       transition: {
         duration: 0.6,
-        ease: 'easeOut',
+        ease: "easeOut" as const,
         staggerChildren: 0.1
       }
     }
@@ -157,7 +157,7 @@ export default function TechPartners({
       y: 0,
       transition: {
         duration: 0.6,
-        ease: 'easeOut'
+        ease: "easeOut" as const
       }
     }
   }
@@ -167,7 +167,7 @@ export default function TechPartners({
       scale: 1.05,
       transition: {
         duration: 0.2,
-        ease: 'easeOut'
+        ease: "easeOut" as const
       }
     }
   }
@@ -179,7 +179,7 @@ export default function TechPartners({
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: '-100px' }}
-        transition={{ duration: 0.6, ease: 'easeOut' }}
+        transition={{ duration: 0.6, ease: "easeOut" as const }}
         className="text-center mb-12"
       >
         <h2 className="text-3xl md:text-4xl font-bold text-text mb-3 leading-tight">
@@ -217,11 +217,6 @@ export default function TechPartners({
               >
                 <Logo 
                   className="h-8 md:h-10 w-auto text-muted group-hover:text-accent transition-colors duration-300 filter opacity-60 group-hover:opacity-100"
-                  style={{
-                    // Ensure crisp rendering at all sizes
-                    imageRendering: 'crisp-edges',
-                    maxWidth: '120px'
-                  }}
                 />
               </motion.div>
             </motion.div>
@@ -234,7 +229,7 @@ export default function TechPartners({
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: '-100px' }}
-        transition={{ duration: 0.6, ease: 'easeOut', delay: 0.3 }}
+        transition={{ duration: 0.6, ease: "easeOut" as const, delay: 0.3 }}
         className="text-center mt-12"
       >
         <p className="text-sm text-muted max-w-3xl mx-auto leading-relaxed">

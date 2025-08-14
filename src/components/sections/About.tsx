@@ -55,7 +55,7 @@ export default function About({
       marginTop: '1.5rem',
       transition: {
         duration: 0.5,
-        ease: 'easeOut',
+        ease: "easeOut" as const,
         height: {
           duration: 0.4
         },
@@ -71,7 +71,7 @@ export default function About({
       marginTop: 0,
       transition: {
         duration: 0.4,
-        ease: 'easeIn',
+        ease: "easeIn" as const,
         opacity: {
           duration: 0.2
         },
@@ -162,7 +162,7 @@ export default function About({
                 <span>{isExpanded ? 'Read Less' : 'Read More'}</span>
                 <motion.div
                   animate={{ rotate: isExpanded ? 180 : 0 }}
-                  transition={{ duration: 0.3, ease: 'easeOut' }}
+                  transition={{ duration: 0.3, ease: "easeOut" as const }}
                 >
                   {isExpanded ? (
                     <ChevronUp className="h-4 w-4" aria-hidden="true" />
