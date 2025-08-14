@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { z } from 'zod';
+import { z, ZodError } from 'zod';
 
 // Rate limiting store (in production, use Redis or similar)
 const rateLimitStore = new Map<string, { count: number; resetTime: number }>();
@@ -143,16 +143,16 @@ export async function POST(request: NextRequest) {
       { status: 200 }
     );
     
-  } catch (error) {
+  } catch (error: unknown) {
     console.error('Contact form error:', error);
     
-    if (error instanceof z.ZodError) {
+    if (error instanceof ZodError) {
       return NextResponse.json(
         { 
           message: 'Validation error',
-          errors: error.errors.map(err => ({
-            field: err.path.join('.'),
-            message: err.message,
+          errors: error.issues.map(issue => ({
+            field: issue.path.join('.'),
+            message: issue.message,
           }))
         },
         { status: 400 }
