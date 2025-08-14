@@ -56,13 +56,13 @@ export default function CelebrationBanner() {
   }
 
   const textGlowVariants = {
-    initial: { textShadow: "0 0 0px rgba(0, 245, 212, 0)" },
+    initial: { textShadow: "0 0 0px rgba(215, 38, 61, 0)" },
     animate: { 
       textShadow: [
-        "0 0 10px rgba(0, 245, 212, 0.5)",
-        "0 0 20px rgba(0, 245, 212, 0.8)", 
-        "0 0 30px rgba(0, 245, 212, 0.6)",
-        "0 0 10px rgba(0, 245, 212, 0.5)"
+        "0 0 10px rgba(215, 38, 61, 0.5)",
+        "0 0 20px rgba(215, 38, 61, 0.8)", 
+        "0 0 30px rgba(215, 38, 61, 0.6)",
+        "0 0 10px rgba(215, 38, 61, 0.5)"
       ],
       transition: { 
         duration: 2, 
@@ -80,7 +80,7 @@ export default function CelebrationBanner() {
           initial="initial"
           animate="animate"
           exit="exit"
-          className="fixed top-0 left-0 right-0 z-50 bg-gradient-to-r from-accent/95 via-accent-warm/95 to-accent/95 backdrop-blur-md border-b border-white/20"
+          className="fixed top-0 left-0 right-0 z-50 bg-gradient-to-r from-accent/95 via-highlight/95 to-accent/95 backdrop-blur-md border-b border-white/20"
         >
           {/* Confetti Particles */}
           {[...Array(12)].map((_, i) => (
@@ -122,10 +122,10 @@ export default function CelebrationBanner() {
                 animate="animate"
                 className="flex flex-col sm:flex-row sm:items-center sm:space-x-2"
               >
-                <span className="text-lg sm:text-xl font-bold text-bg">
+                <span className="text-lg sm:text-xl font-bold text-neutral-light drop-shadow-sm">
                   Imaginta First Live
                 </span>
-                <span className="text-sm sm:text-lg font-semibold text-bg/80">
+                <span className="text-sm sm:text-lg font-semibold text-neutral-light/90 drop-shadow-sm">
                   — 14.08.2025
                 </span>
               </motion.div>
@@ -135,10 +135,10 @@ export default function CelebrationBanner() {
               onClick={handleDismiss}
               whileHover={{ scale: 1.1, rotate: 90 }}
               whileTap={{ scale: 0.9 }}
-              className="p-2 rounded-full bg-bg/20 hover:bg-bg/30 transition-colors"
+              className="p-2 rounded-full bg-neutral-light/20 hover:bg-neutral-light/30 transition-colors backdrop-blur-sm"
               aria-label="Dismiss celebration banner"
             >
-              <X size={16} className="text-bg" />
+              <X size={16} className="text-neutral-light" />
             </motion.button>
           </div>
 

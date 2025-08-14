@@ -37,7 +37,7 @@ export default function Hero() {
             }}
           >
             Your Business.{' '}
-            <span className="text-accent bg-gradient-to-r from-accent via-accent-warm to-highlight bg-clip-text text-transparent">
+            <span className="text-accent bg-gradient-to-r from-accent via-highlight to-accent bg-clip-text text-transparent">
               Elevated.
             </span>
           </motion.h1>

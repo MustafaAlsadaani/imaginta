@@ -72,13 +72,13 @@ export default function Header() {
       transition={{ duration: 0.6, ease: "easeOut" as const }}
     >
       <nav className={`max-w-7xl mx-auto px-6 flex items-center justify-between transition-all duration-500 ${
-        isScrolled ? 'h-12 py-1' : 'h-16 py-3'
+        isScrolled ? 'h-14 py-2' : 'h-16 py-3'
       }`} aria-label="Global navigation">
         <div className="flex lg:flex-1">
           <a href="#home" className="-m-1.5 p-1.5" onClick={(e) => handleNavClick(e, '#home')}>
             <span className="sr-only">Imaginta</span>
             <div className={`font-bold text-accent transition-all duration-500 ${
-              isScrolled ? 'text-xl' : 'text-2xl'
+              isScrolled ? 'text-lg' : 'text-xl'
             }`}>Imaginta</div>
           </a>
         </div>
