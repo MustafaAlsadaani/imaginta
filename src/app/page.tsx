@@ -14,11 +14,15 @@ import FAQ from '@/components/sections/FAQ'
 import ContactForm from '@/components/ContactForm'
 import FloatingContact from '@/components/FloatingContact'
 import SectionNavLink from '@/components/SectionNavLink'
+import CelebrationBanner from '@/components/CelebrationBanner'
 import { decorativeFloat } from '@/lib/animations'
 
 export default function Home() {
   return (
     <>
+      {/* Celebration Banner */}
+      <CelebrationBanner />
+      
       {/* Hero Section */}
       <Hero />
       

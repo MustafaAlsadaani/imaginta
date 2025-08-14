@@ -196,7 +196,7 @@ export default function WhyChooseUs({
               className="inline-flex items-center justify-center rounded-xl bg-accent px-8 py-4 text-lg font-semibold transition-all duration-300 hover:bg-accent-warm focus:outline-none focus:ring-4 focus:ring-accent/30 focus:ring-offset-2 focus:ring-offset-bg group"
               style={{
                 color: '#000000', // High contrast for accessibility
-                backgroundColor: '#10B981'
+                backgroundColor: '#00F5D4'
               }}
             >
               Start Your Project Today
