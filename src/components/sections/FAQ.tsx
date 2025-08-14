@@ -120,8 +120,8 @@ const defaultCategories: FAQCategory[] = [
 
 export default function FAQ({
   id = 'faq',
-  title = 'Frequently Asked Questions',
-  subtitle = 'Find quick answers to common questions about our services and process',
+  title = 'Questions? We Have Answers',
+  subtitle = 'Find quick answers to common questions about our services and how we work together',
   categories = defaultCategories
 }: FAQProps) {
   const [openItems, setOpenItems] = useState<string[]>([])
@@ -209,7 +209,7 @@ export default function FAQ({
   }
 
   return (
-    <section id={id} className="section-shell py-16">
+    <section id={id} className="section-shell-lg">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -258,25 +258,25 @@ export default function FAQ({
                 return (
                   <div
                     key={item.id}
-                    className="group bg-surface/40 border border-border rounded-xl hover:border-accent/40 hover:bg-surface/60 transition-all duration-300 backdrop-blur-sm"
+                    className="group bg-surface/30 border border-border rounded-lg hover:border-warm-accent/30 hover:bg-surface/50 transition-all duration-500 backdrop-blur-sm shadow-lg hover:shadow-xl"
                   >
                     {/* Question */}
                     <button
                       onClick={() => toggleItem(item.id)}
-                      className="w-full p-4 text-left flex items-center justify-between gap-4 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-bg rounded-xl"
+                      className="w-full p-3 text-left flex items-center justify-between gap-4 focus:outline-none focus:ring-2 focus:ring-warm-accent focus:ring-offset-2 focus:ring-offset-bg rounded-lg"
                       aria-expanded={isOpen}
                       aria-controls={`faq-answer-${item.id}`}
                     >
-                      <h4 className="text-base font-semibold text-accent group-hover:text-accent-warm transition-colors duration-300">
+                      <h4 className="text-sm font-semibold text-accent group-hover:text-warm-accent transition-colors duration-300">
                         {item.question}
                       </h4>
                       <div className="flex-shrink-0">
                         <motion.div
                           animate={{ rotate: isOpen ? 180 : 0 }}
                           transition={{ duration: 0.2, ease: "easeOut" as const }}
-                          className="w-5 h-5 text-accent-warm group-hover:text-highlight transition-colors duration-300"
+                          className="w-4 h-4 text-accent-warm group-hover:text-warm-accent transition-colors duration-300"
                         >
-                          <ChevronDown className="w-5 h-5" />
+                          <ChevronDown className="w-4 h-4" />
                         </motion.div>
                       </div>
                     </button>
@@ -292,8 +292,8 @@ export default function FAQ({
                           exit="exit"
                           className="overflow-hidden"
                         >
-                          <div className="px-4 pb-4">
-                            <p className="text-muted text-sm leading-relaxed">
+                          <div className="px-3 pb-3">
+                            <p className="text-muted text-xs leading-relaxed">
                               {item.answer}
                             </p>
                           </div>
@@ -318,10 +318,10 @@ export default function FAQ({
       >
         <div className="max-w-2xl mx-auto">
           <h3 className="text-2xl font-semibold text-text mb-4">
-            Still Have Questions?
+            Still Curious About Something?
           </h3>
           <p className="text-lg text-muted mb-8 leading-relaxed">
-            We&apos;re here to help! Get in touch with our team for personalized answers to your specific questions.
+            We&apos;re here to help! Get in touch with our friendly team for personalized answers to your specific questions.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <a
@@ -339,7 +339,7 @@ export default function FAQ({
                 backgroundColor: '#00F5D4'
               }}
             >
-              Contact Us
+Let&apos;s Talk
             </a>
             <a
               href="#services"
@@ -352,7 +352,7 @@ export default function FAQ({
               }}
               className="inline-flex items-center justify-center rounded-xl border-2 border-accent px-8 py-4 text-lg font-semibold text-accent hover:bg-accent hover:text-bg transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-accent/30 focus:ring-offset-2 focus:ring-offset-bg"
             >
-              Learn About Our Services
+Discover How We Can Help
             </a>
           </div>
         </div>

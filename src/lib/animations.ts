@@ -175,12 +175,13 @@ export const gridItem: Variants = {
   },
 };
 
-// Enhanced button hover animation with glow
+// Enhanced button hover animation with warm glow
 export const buttonHover = {
-  scale: prefersReducedMotion() ? 1 : 1.03,
+  scale: prefersReducedMotion() ? 1 : 1.05,
+  y: prefersReducedMotion() ? 0 : -2,
   transition: {
     duration: prefersReducedMotion() ? 0 : cinematicTiming.quick,
-    ease: cinematicEasing.swift,
+    ease: cinematicEasing.dramatic,
   },
 };
 
@@ -211,15 +212,92 @@ export const buttonPress = {
   },
 };
 
-// Enhanced card hover animation
+// Enhanced card hover animation with warm glow
 export const cardHover = {
-  y: prefersReducedMotion() ? 0 : -8,
-  scale: prefersReducedMotion() ? 1 : 1.02,
+  y: prefersReducedMotion() ? 0 : -12,
+  scale: prefersReducedMotion() ? 1 : 1.03,
   transition: {
     duration: prefersReducedMotion() ? 0 : cinematicTiming.standard,
-    ease: cinematicEasing.standard,
+    ease: cinematicEasing.dramatic,
   },
 };
+
+// Warm micro-interaction animations
+export const fadeScaleReveal: Variants = {
+  initial: {
+    opacity: 0,
+    y: 30,
+    scale: 0.9,
+  },
+  animate: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: {
+      duration: prefersReducedMotion() ? 0 : cinematicTiming.slow,
+      ease: cinematicEasing.dramatic,
+    },
+  },
+};
+
+// Icon glow pulse animation
+export const iconGlowPulse: Variants = {
+  initial: {
+    filter: 'drop-shadow(0 0 0 transparent)',
+  },
+  animate: {
+    filter: [
+      'drop-shadow(0 0 8px rgba(28, 169, 201, 0.4))',
+      'drop-shadow(0 0 15px rgba(255, 111, 97, 0.6))',
+      'drop-shadow(0 0 8px rgba(28, 169, 201, 0.4))',
+    ],
+    transition: {
+      duration: prefersReducedMotion() ? 0 : 3,
+      repeat: prefersReducedMotion() ? 0 : Infinity,
+      ease: cinematicEasing.gentle,
+    },
+  },
+};
+
+// Heading underline sweep
+export const headingUnderline: Variants = {
+  initial: {
+    scaleX: 0,
+    originX: 0,
+  },
+  animate: {
+    scaleX: 1,
+    transition: {
+      duration: prefersReducedMotion() ? 0 : cinematicTiming.slow,
+      ease: cinematicEasing.standard,
+      delay: prefersReducedMotion() ? 0 : 0.3,
+    },
+  },
+};
+
+// Warm button hover with enhanced glow
+export const warmButtonHover = {
+  y: prefersReducedMotion() ? 0 : -4,
+  scale: prefersReducedMotion() ? 1 : 1.05,
+  transition: {
+    duration: prefersReducedMotion() ? 0 : cinematicTiming.standard,
+    ease: cinematicEasing.dramatic,
+  },
+};
+
+// Parallax scroll effect
+export const parallaxScroll = (speed: number = 0.5): Variants => ({
+  initial: {
+    y: 0,
+  },
+  animate: {
+    y: prefersReducedMotion() ? 0 : -50 * speed,
+    transition: {
+      duration: prefersReducedMotion() ? 0 : cinematicTiming.ambient,
+      ease: cinematicEasing.gentle,
+    },
+  },
+});
 
 // Card tap animation
 export const cardTap = {
@@ -569,10 +647,49 @@ export const stickyNavBg: Variants = {
   },
   animate: {
     opacity: 1,
-    backdropFilter: 'blur(12px)',
+    backdropFilter: 'blur(16px)',
     transition: {
       duration: prefersReducedMotion() ? 0 : cinematicTiming.quick,
       ease: cinematicEasing.standard,
     },
   },
 };
+
+// Section connector animation
+export const sectionConnector: Variants = {
+  initial: {
+    scaleX: 0,
+    opacity: 0,
+  },
+  animate: {
+    scaleX: 1,
+    opacity: 1,
+    transition: {
+      duration: prefersReducedMotion() ? 0 : cinematicTiming.ambient,
+      ease: cinematicEasing.gentle,
+    },
+  },
+};
+
+// Floating particles background
+export const floatingParticle = (delay: number = 0): Variants => ({
+  initial: {
+    opacity: 0,
+    scale: 0.8,
+    y: 0,
+    x: 0,
+  },
+  animate: {
+    opacity: [0, 0.05, 0.08, 0.03, 0.06],
+    scale: [0.8, 1.2, 0.9, 1.1, 1],
+    y: prefersReducedMotion() ? 0 : [-20, 15, -10, 20, -5],
+    x: prefersReducedMotion() ? 0 : [-10, 8, -5, 12, -3],
+    transition: {
+      duration: prefersReducedMotion() ? 0 : 15,
+      delay: prefersReducedMotion() ? 0 : delay,
+      repeat: prefersReducedMotion() ? 0 : Infinity,
+      repeatType: 'reverse',
+      ease: cinematicEasing.gentle,
+    },
+  },
+});

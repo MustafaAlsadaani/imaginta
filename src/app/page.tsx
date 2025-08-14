@@ -15,7 +15,7 @@ import ContactForm from '@/components/ContactForm'
 import FloatingContact from '@/components/FloatingContact'
 import SectionNavLink from '@/components/SectionNavLink'
 import CelebrationBanner from '@/components/CelebrationBanner'
-import { decorativeFloat, sectionDivider } from '@/lib/animations'
+import { decorativeFloat, floatingParticle, sectionConnector } from '@/lib/animations'
 
 export default function Home() {
   return (
@@ -52,10 +52,10 @@ export default function Home() {
       {/* About Section */}
       <About 
         id="about"
-        title="About Imaginta"
+        title="How We Help You Grow"
         content={[
-          'We are a digital creative studio that transforms businesses through innovative web solutions, compelling brand identities, and data-driven growth strategies.',
-          'Our team combines technical expertise with creative vision to deliver experiences that not only look stunning but drive measurable results for your business.'
+          'We\'re a digital creative studio passionate about transforming businesses through innovative web solutions, compelling brand identities, and data-driven growth strategies.',
+          'Our team combines technical expertise with creative vision to deliver experiences that not only look stunning but drive real, measurable results for your business.'
         ]}
         expandedContent={[
           'Founded in 2020, we have partnered with over 150 businesses across diverse industries, from startups to Fortune 500 companies. Our collaborative approach ensures that every project reflects your unique vision while meeting the highest standards of modern web development.',
@@ -68,10 +68,10 @@ export default function Home() {
       {/* Mission Section */}
       <About 
         id="mission"
-        title="Our Mission"
+        title="What Drives Us Every Day"
         content={[
-          'To empower businesses with digital solutions that drive growth, enhance user experiences, and create lasting competitive advantages in the modern marketplace.',
-          'We bridge the gap between creative vision and technical execution, ensuring every project delivers both aesthetic excellence and functional performance.'
+          'We\'re here to empower businesses with digital solutions that drive real growth, enhance user experiences, and create lasting competitive advantages in today\'s marketplace.',
+          'We bridge the gap between creative vision and technical execution, ensuring every project delivers both stunning aesthetics and rock-solid performance.'
         ]}
         expandedContent={[
           'Our mission extends beyond delivering projects—we aim to be strategic partners in your digital transformation journey. We take time to understand your business goals, target audience, and competitive landscape to create solutions that truly make a difference.',
@@ -85,8 +85,8 @@ export default function Home() {
         <div className="text-center">
           <SectionNavLink
             href="#services"
-            title="Explore Our Services"
-            description="Discover what we can build for you"
+            title="Discover What We Can Build Together"
+            description="Let's explore the possibilities"
             variant="primary"
             direction="down"
             className="mx-auto"
@@ -99,14 +99,39 @@ export default function Home() {
         <Services />
       </div>
 
-      {/* Section Divider */}
+      {/* Enhanced Section Divider */}
       <motion.div 
-        className="section-divider"
-        variants={sectionDivider}
+        className="section-divider gradient-flow"
+        variants={sectionConnector}
         initial="initial"
         whileInView="animate"
         viewport={{ once: true, amount: 0.1 }}
       />
+      
+      {/* Floating Background Particles */}
+      <div className="aurora-particles">
+        <motion.div 
+          className="aurora-particle medium"
+          variants={floatingParticle(0)}
+          initial="initial"
+          animate="animate"
+          style={{ top: '10%', left: '15%' }}
+        />
+        <motion.div 
+          className="aurora-particle small"
+          variants={floatingParticle(2)}
+          initial="initial"
+          animate="animate"
+          style={{ top: '60%', right: '10%' }}
+        />
+        <motion.div 
+          className="aurora-particle large"
+          variants={floatingParticle(4)}
+          initial="initial"
+          animate="animate"
+          style={{ bottom: '30%', left: '8%' }}
+        />
+      </div>
 
       {/* Why Choose Us Section */}
       <WhyChooseUs />
@@ -115,13 +140,13 @@ export default function Home() {
       <section className="section-shell-sm section-gradient">
         <div className="max-w-2xl mx-auto text-center">
           <div className="mb-8">
-            <h3 className="text-xl font-semibold text-text mb-2">Ready to see how we work?</h3>
-            <p className="text-muted">Our proven process ensures your project success from concept to launch.</p>
+            <h3 className="text-xl font-semibold text-text mb-2">Ready to see how we work together?</h3>
+            <p className="text-muted">Our proven process ensures your project&apos;s success from initial idea to successful launch.</p>
           </div>
           <SectionNavLink
             href="#process"
-            title="See Our Process"
-            description="Step-by-step project workflow"
+            title="See How We Work"
+            description="Our step-by-step collaboration"
             variant="secondary"
             direction="down"
             className="mx-auto"
@@ -138,9 +163,9 @@ export default function Home() {
       <section id="service-commitment" className="section-shell section-subtle">
         <div className="max-w-4xl mx-auto">
           <div className="section-header">
-            <h2 className="section-title">Our Service Commitment</h2>
+            <h2 className="section-title">Our Promise to You</h2>
             <p className="section-subtitle">
-              Building trust through transparency and delivering on our promises to every client.
+              Building trust through transparency and always delivering on our promises to every client.
             </p>
           </div>
           
@@ -198,23 +223,23 @@ export default function Home() {
       <section className="section-shell-sm">
         <div className="max-w-3xl mx-auto text-center">
           <div className="mb-8">
-            <h3 className="text-2xl font-semibold text-text mb-3">See Our Work in Action</h3>
+            <h3 className="text-2xl font-semibold text-text mb-3">See Our Work Come to Life</h3>
             <p className="text-muted">
-              Real projects, real results. Discover how we&apos;ve helped businesses like yours achieve their digital goals.
+              Real projects, real results. Discover how we&apos;ve helped businesses just like yours achieve their digital dreams.
             </p>
           </div>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <SectionNavLink
               href="#case-studies"
-              title="View Case Studies"
-              description="Detailed project breakdowns"
+              title="View Our Success Stories"
+              description="Real projects, real results"
               variant="primary"
               className="flex-1 max-w-xs"
             />
             <SectionNavLink
               href="#testimonials"
-              title="Client Stories"
-              description="What our clients say"
+              title="Hear From Our Clients"
+              description="What they say about working with us"
               variant="secondary"
               className="flex-1 max-w-xs"
             />
@@ -242,15 +267,15 @@ export default function Home() {
       <section className="section-shell-sm section-subtle">
         <div className="max-w-2xl mx-auto text-center">
           <div className="mb-8">
-            <h3 className="text-xl font-semibold text-text mb-2">Ready to discuss your project?</h3>
+            <h3 className="text-xl font-semibold text-text mb-2">Ready to bring your vision to life?</h3>
             <p className="text-muted">
-              See our transparent pricing and find the perfect package for your needs.
+              See our transparent pricing and find the perfect package that fits your needs and budget.
             </p>
           </div>
           <SectionNavLink
             href="#pricing"
-            title="View Pricing"
-            description="Transparent packages for every budget"
+            title="Explore Our Packages"
+            description="Transparent pricing for every budget"
             variant="primary"
             className="mx-auto"
           />
@@ -269,24 +294,24 @@ export default function Home() {
 
       <section id="resources" className="section-shell section-subtle">
         <div className="elevated-surface text-center p-12">
-          <h2 className="text-3xl font-bold text-text mb-4">Resources</h2>
-          <p className="text-muted">Helpful guides, tips, and insights for your digital journey.</p>
+          <h2 className="text-3xl font-bold text-text mb-4">Resources & Insights</h2>
+          <p className="text-muted">Helpful guides, tips, and insights to power your digital journey.</p>
           <div className="divider-glow"></div>
-          <p className="text-sm text-muted/70">More resources coming soon...</p>
+          <p className="text-sm text-muted/70">Amazing resources coming your way soon...</p>
         </div>
       </section>
 
       {/* Final CTA to Contact */}
       <section className="section-shell">
         <div className="max-w-2xl mx-auto text-center">
-          <h3 className="text-2xl font-semibold text-text mb-4">Ready to Get Started?</h3>
+          <h3 className="text-2xl font-semibold text-text mb-4">Let&apos;s Build Something Amazing Together</h3>
           <p className="text-muted mb-8">
-            Have questions? Need a custom solution? Let&apos;s discuss your project and see how we can help bring your vision to life.
+            Have questions? Need a custom solution? Let&apos;s chat about your project and discover how we can help bring your vision to life.
           </p>
           <SectionNavLink
             href="#contact"
-            title="Start Your Project"
-            description="Tell us about your vision"
+            title="Start Our Conversation"
+            description="Tell us about your dreams"
             variant="primary"
             direction="down"
             className="mx-auto"

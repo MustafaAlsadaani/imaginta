@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
-import { buttonHover, buttonTap, navItem, mobileMenuSlide, mobileMenuStagger, mobileMenuItem } from '@/lib/animations'
+import { buttonTap, navItem, mobileMenuSlide, mobileMenuStagger, mobileMenuItem, warmButtonHover } from '@/lib/animations'
 
 const navigation = [
   { name: 'About', href: '#about' },
@@ -72,13 +72,13 @@ export default function Header() {
       transition={{ duration: 0.6, ease: "easeOut" as const }}
     >
       <nav className={`max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between transition-all duration-500 ${
-        isScrolled ? 'h-12 py-2' : 'h-14 py-2.5'
+        isScrolled ? 'h-16 py-3' : 'h-18 py-4'
       }`} aria-label="Global navigation">
         <div className="flex lg:flex-1">
           <a href="#home" className="-m-1.5 p-1.5" onClick={(e) => handleNavClick(e, '#home')}>
             <span className="sr-only">Imaginta</span>
             <div className={`font-bold text-accent transition-all duration-500 ${
-              isScrolled ? 'text-lg' : 'text-xl'
+              isScrolled ? 'text-xl' : 'text-2xl'
             }`}>Imaginta</div>
           </a>
         </div>
@@ -90,12 +90,12 @@ export default function Header() {
               key={item.name}
               href={item.href}
               onClick={(e) => handleNavClick(e, item.href)}
-              className="text-sm font-medium leading-6 text-text hover:text-accent transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-bg rounded-lg px-2 py-1"
+              className="text-sm font-medium leading-6 text-text hover:text-warm-accent transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-warm-accent focus:ring-offset-2 focus:ring-offset-bg rounded-lg px-3 py-2 relative overflow-hidden group"
               variants={navItem}
               initial="initial"
               animate="animate"
               transition={{ delay: index * 0.1 + 0.2 }}
-              whileHover={buttonHover}
+              whileHover={warmButtonHover}
               whileTap={buttonTap}
             >
               {item.name}
@@ -106,14 +106,14 @@ export default function Header() {
           <motion.a
             href="#contact"
             onClick={(e) => handleNavClick(e, '#contact')}
-            className={`btn-primary font-semibold transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 ${
-              isScrolled ? 'px-3 py-1.5 text-xs' : 'px-4 py-2 text-sm'
+            className={`btn-primary font-semibold transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-warm-accent focus:ring-offset-2 ${
+              isScrolled ? 'px-4 py-2 text-sm' : 'px-6 py-3 text-base'
             }`}
             variants={navItem}
             initial="initial"
             animate="animate"
             transition={{ delay: 0.8 }}
-            whileHover={buttonHover}
+            whileHover={warmButtonHover}
             whileTap={buttonTap}
           >
             Get Started
