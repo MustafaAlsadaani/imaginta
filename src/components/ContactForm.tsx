@@ -99,7 +99,7 @@ export default function ContactForm() {
         >
           <h2 className="text-3xl font-bold text-text mb-4">Ready to Get Started?</h2>
           <p className="text-muted">
-            Let's discuss your project and see how we can help bring your vision to life.
+            Let&apos;s discuss your project and see how we can help bring your vision to life.
           </p>
         </motion.div>
 
@@ -121,7 +121,7 @@ export default function ContactForm() {
                 <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
               </svg>
               <p className="text-green-800 dark:text-green-200 font-medium">
-                Thank you! Your message has been sent successfully. We'll get back to you within 24 hours.
+                Thank you! Your message has been sent successfully. We&apos;ll get back to you within 24 hours.
               </p>
             </div>
           </motion.div>

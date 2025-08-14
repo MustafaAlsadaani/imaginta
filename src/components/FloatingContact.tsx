@@ -62,7 +62,7 @@ export default function FloatingContact() {
                 >
                   <h3 className="text-lg font-semibold text-text mb-3">Get In Touch</h3>
                   <p className="text-muted text-sm mb-4">
-                    Ready to start your project? Let's discuss your ideas.
+                    Ready to start your project? Let&apos;s discuss your ideas.
                   </p>
                   
                   <div className="space-y-2">

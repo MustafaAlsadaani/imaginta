@@ -15,7 +15,7 @@ export default function AnimatedSection({
   children, 
   className = '', 
   id,
-  variant = 'fadeInUp'
+  variant: _variant = 'fadeInUp'
 }: AnimatedSectionProps) {
   const inViewProps = useInViewAnimation();
 

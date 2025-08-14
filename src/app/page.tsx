@@ -135,7 +135,7 @@ export default function Home() {
             <div className="soft-card p-6 text-left">
               <h3 className="text-xl font-semibold text-text mb-3">🚀 Project Timeline Guarantee</h3>
               <p className="text-muted">
-                We deliver your project on schedule. If we're running late, we'll notify you immediately with a revised timeline and provide weekly progress updates until completion.
+                We deliver your project on schedule. If we&apos;re running late, we&apos;ll notify you immediately with a revised timeline and provide weekly progress updates until completion.
               </p>
             </div>
             
@@ -187,7 +187,7 @@ export default function Home() {
           <div className="mb-8">
             <h3 className="text-2xl font-semibold text-text mb-3">See Our Work in Action</h3>
             <p className="text-muted">
-              Real projects, real results. Discover how we've helped businesses like yours achieve their digital goals.
+              Real projects, real results. Discover how we&apos;ve helped businesses like yours achieve their digital goals.
             </p>
           </div>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -265,7 +265,7 @@ export default function Home() {
         <div className="max-w-2xl mx-auto text-center">
           <h3 className="text-2xl font-semibold text-text mb-4">Ready to Get Started?</h3>
           <p className="text-muted mb-8">
-            Have questions? Need a custom solution? Let's discuss your project and see how we can help bring your vision to life.
+            Have questions? Need a custom solution? Let&apos;s discuss your project and see how we can help bring your vision to life.
           </p>
           <SectionNavLink
             href="#contact"
